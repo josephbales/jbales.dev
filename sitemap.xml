@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://jbales.dev/</loc>
+    </url>
+    <url>
+        <loc>https://jbales.dev/about/</loc>
+    </url>
+    <url>
+        <loc>https://jbales.dev/blog/</loc>
+    </url>
+    <url>
+        <loc>https://jbales.dev/blog/apache-virtual-hosts-on-freebsd/</loc>
+        <lastmod>2015-04-03T00:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://jbales.dev/blog/hello-world/</loc>
+        <lastmod>2022-05-29T00:00:00+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://jbales.dev/blog/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://jbales.dev/contact/</loc>
+    </url>
+    <url>
+        <loc>https://jbales.dev/privacy-policy/</loc>
+    </url>
+</urlset>
