@@ -1,3 +1,4 @@
-# jbales.dev
+The professional web site of Joseph Bales
+---
 
-My developer blog site
+My professional web site, hosted here at Github

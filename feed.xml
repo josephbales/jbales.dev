@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="/feed.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>jbales.dev</title>
+ <link href="https://jbales.dev/feed.xml" rel="self"/>
+ <link href="https://jbales.dev/" rel="alternate"/>
+ <subtitle></subtitle>
+ <updated>2023-07-30T00:31:10+00:00</updated>
+ <id>https://jbales.dev/</id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+ <rights type="text">Copyright © 2023 . All rights reserved.</rights>
+
+ 
+ <entry>
+   <title>.NET Core 1.0 Not Ready for Primetime</title>
+   <link rel="alternate" href="https://jbales.dev/blog/2017/01/13/NET-Core-1.0-Not-Ready-for-Primetime.html"/>
+   <updated>2017-01-13T00:00:00+00:00</updated>
+   <id>https://jbales.dev/blog/2017/01/13/NET-Core-1.0-Not-Ready-for-Primetime</id>
+   <summary>&lt;rant&gt; Well, I just spent two hours of my life getting a project running that was already working on another PC. I’m so fed up right now that I don’t really want to work on the actual project. It is an ASP.NET Core 1.0 project that I’ve been working on...</summary>
+   <content type="html">&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;rant&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, I just spent two hours of my life getting a project running that was already working on another PC. I’m so fed up right now that I don’t really want to work on the actual project. It is an ASP.NET Core 1.0 project that I’ve been working on a few minutes at a time for the past couple of months. I’ve made so little progress that when I started running into trouble I thought about just creating a new project from scratch and copying over the files. But without a guarantee that the new project would work I decided that was not a very good solution.&lt;/p&gt;
+
+&lt;p&gt;It’s actually been a few months since I’ve messed with the project. It builds and runs on my laptop, but I just built a new desktop computer and I have been doing most of my work on it, so I wanted to get the project going. I cloned it to the machine, restored the packages, and immediately ran into problems.&lt;/p&gt;
+
+&lt;p&gt;The first thing I ran into was that the .Net Core SDK doesn’t get installed with Visual Studio 2015, mmmmkay. I installed that. Then the project won’t build. Turns out there were some new packages I needed that didn’t get included in my project.json, so I added those. Mind you this is the same project.json file that worked fine on my laptop. Then I spent several minutes figuring out how to get the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dotnet user-secrets&lt;/code&gt; command working. This one was also a missing reference in my project.json. This also didn’t work on the laptop although it must have at some point in the past, otherwise I would not have been able to add my secret keys to it.&lt;/p&gt;
+
+&lt;p&gt;I re-ran across the problem where if you are running the project with IIS Express and SSL in debugging mode, it won’t work until you create the self-signed certificate. It doesn’t throw an error or anything, the page just never loads. Using CTRL+F5 to start the project will get the pop-up you need to create the cert.&lt;/p&gt;
+
+&lt;p&gt;Finally, I ran across a bug where EF migrations can’t deal with the boilerplate code created for use with Microsoft Identity. I had to go in and manually edit the migration code to give some fields maxlengths so that they could be used as indexes. Crazy.&lt;/p&gt;
+
+&lt;p&gt;So far my experience with .NET Core has just been one thing after another like this. The tooling is standing in the way of my coding. Honestly I’m not even sure why they released .NET Core 1.0 while the tooling was still officially in preview. I mean, the tooling is still in preview 3 months later and still seems to need some work.&lt;/p&gt;
+
+&lt;p&gt;I like the ideas behind .NET Core, but I’m thinking it has been a bit rushed. One of the things that really sets the Microsoft stack apart from others is how solid and cohesive it has been. I hope they can pull this shit together and get it shored up in the next few months.&lt;/p&gt;
+
+&lt;p&gt;Also, while I’m ranting about Microsoft products, let me just say that their sculpt keyboard and mouse combo is not great. You can check out my review at &lt;a href=&quot;https://www.amazon.com/gp/customer-reviews/R207405EDO9X04?ref_=cm_cr_arp_d_rvw_ttl&amp;amp;ASIN=B00CYX53QW&amp;amp;pldnSite=1&quot;&gt;this link&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;/rant&amp;gt;&lt;/code&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>MVCGrid.Net</title>
+   <link rel="alternate" href="https://jbales.dev/blog/2016/12/12/Free-Grid-Sorting-in-ASP.NET-MVC-5.html"/>
+   <updated>2016-12-12T00:00:00+00:00</updated>
+   <id>https://jbales.dev/blog/2016/12/12/Free-Grid-Sorting-in-ASP.NET-MVC-5</id>
+   <summary>I didn’t want an entire year to go by without writing a post, so I thought that I would talk a little bit about a neat little tool I found for displaying grid data in ASP.NET MVC 5 projects. It’s called MVCGrid.Net. I say “neat little tool,” but it’s actually...</summary>
+   <content type="html">&lt;p&gt;I didn’t want an entire year to go by without writing a post, so I thought that I would talk a little bit about a neat little tool I found for displaying grid data in ASP.NET MVC 5 projects. It’s called &lt;a href=&quot;http://mvcgrid.net/&quot; title=&quot;MVCGrid.Net&quot;&gt;MVCGrid.Net&lt;/a&gt;. I say “neat little tool,” but it’s actually quite powerful now that I know more about how to use it.&lt;/p&gt;
+
+&lt;p&gt;For styling it uses &lt;a href=&quot;http://getbootstrap.com/&quot; title=&quot;Bootstrap&quot;&gt;Bootstrap&lt;/a&gt; so that makes it easy for me since I already use Bootstrap for basic styling. It also includes a DLL where most of the magic happens and the configuration happens in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MVCGridConfig.cs&lt;/code&gt; file that you include in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;App_Start&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;It allows all kinds of automagic functionality like sorting, paging, filtering, and exporting. You can also allow customized fields and page sizes. A lot of this stuff is built in, but you can also write your own rendering engine and razor templates that will allow you to do whatever it is you want.&lt;/p&gt;
+
+&lt;p&gt;One page that might get overlooked in the documentation is the Custom Razor View page. It doesn’t have a direct link on the documentation table of contents. It’s actually buried in one of the other pages, but here’s the &lt;a href=&quot;http://mvcgrid.net/demo/customrazorview&quot; title=&quot;Link to Custom Razor Views&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The best thing is that it is free, open source (using the MIT license), and fairly well documented. Check it out if you are in need of something to help you get sortable grids up and running quickly in ASP.NET MVC 5.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Error converting data type DBTYPE_DBTIMESTAMP to datetime2</title>
+   <link rel="alternate" href="https://jbales.dev/blog/2015/09/15/error-converting-data-type-dbtype_dbtimestamp-to-datetime2.html"/>
+   <updated>2015-09-15T00:00:00+00:00</updated>
+   <id>https://jbales.dev/blog/2015/09/15/error-converting-data-type-dbtype_dbtimestamp-to-datetime2</id>
+   <summary>Okay, so here is a post that has been months in the making. Lately I’ve been working on an ETL project, mostly the E and T parts. The project involves exporting data from a database via an ODBC driver (AcuODBC to be exact). I don’t have any control over the database being accessed other...</summary>
+   <content type="html">&lt;p&gt;Okay, so here is a post that has been months in the making.&lt;/p&gt;
+
+&lt;p&gt;Lately I’ve been working on an &lt;a href=&quot;https://en.wikipedia.org/wiki/Extract,_transform,_load&quot; target=&quot;_blank&quot;&gt;ETL&lt;/a&gt; project, mostly the E and T parts. The project involves exporting data from a database via an &lt;a href=&quot;https://en.wikipedia.org/wiki/Open_Database_Connectivity&quot; target=&quot;_blank&quot;&gt;ODBC&lt;/a&gt; driver (&lt;a href=&quot;http://supportline.microfocus.com/Documentation/AcucorpProducts/docs/v6_online_doc/acuodbc/acuodbct.htm&quot; target=&quot;_blank&quot;&gt;AcuODBC&lt;/a&gt; to be exact). I don’t have any control over the database being accessed other than being able to extract data and neither the client nor I have much knowledge of how the database actually works. For my part I just know that I can access it via the AcuODBC driver.&lt;/p&gt;
+
+&lt;p&gt;I am using .NET and C# to do the data extraction and translating, but I’ve run into an issue on several tables that has perplexed me for some time. It is the error message that I’ve used as the title of this post:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Error converting data type DBTYPE_DBTIMESTAMP to datetime2.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;No matter how I was trying to get at the data, I kept getting this error. I tried &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/ms187928.aspx&quot; target=&quot;_blank&quot;&gt;CAST and CONVERT&lt;/a&gt; SQL commands. I tried &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/ms162802.aspx&quot; target=&quot;_blank&quot;&gt;BCP&lt;/a&gt;. I tried using &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/ms188029.aspx&quot; target=&quot;_blank&quot;&gt;SELECT INTO&lt;/a&gt;. I tried &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlbulkcopy(v=vs.110).aspx&quot; target=&quot;_blank&quot;&gt;SqlBulkCopy&lt;/a&gt;. I finally got all the way down to using an &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcdatareader(v=vs.110).aspx&quot; target=&quot;_blank&quot;&gt;OdbcDataReader&lt;/a&gt; object to try to move the data, but I kept getting the error when I used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reader[index].ToString()&lt;/code&gt; to access the data.&lt;/p&gt;
+
+&lt;p&gt;But then I noticed there was a method called &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/system.data.odbc.odbcdatareader.getstring(v=vs.110).aspx&quot; target=&quot;_blank&quot;&gt;GetString&lt;/a&gt; in the OdbcDataReader object. I tried it and by golly it worked! (If you have been wondering what the cause of this error has been all along, it is an invalid date that was entered into the database with the year 0000). Yes, it worked, but it worked sloooooooow. Veeeeery slow. It was processing about 2 records per second, which isn’t too bad until you scale that up to over 1.1 million records. The time to extract just that one table would be over 6 days! That would not do.&lt;/p&gt;
+
+&lt;p&gt;I sat on it for a few days and thought about all the potential solutions. I could bulk copy all the rows except the ones in question, but then I’d have to go through each table and find the culprit(s) and write special select statements to exclude those rows, then special select statements to grab those rows minus the offending fields. Then I’d have to update my table with the omitted records. Not something I really wanted to do.&lt;/p&gt;
+
+&lt;p&gt;Then today I noticed that when I used the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reader[index].ToString()&lt;/code&gt; method to get the data, it came out at a much faster, more acceptable speed. Okay, so what if I wrap that in a try block and then in the catch block I use the slower GetString method? If that worked then only the offending data would get extracted using the slow GetString method and everything else would use the other method. And what do you know, it DID work! Here’s the code for posterity (yeah, I’m stripping out all the new lines and spaces).&lt;/p&gt;
+
+&lt;div class=&quot;language-csharp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;++)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Trim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;\n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;\r&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;\t&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Trim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;\n&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;\r&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;\t&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Setting up Apache Virtual Hosts on FreeBSD 10.1</title>
+   <link rel="alternate" href="https://jbales.dev/blog/2015/04/03/setting-up-apache-virtual-hosts-on-freebsd-10-1.html"/>
+   <updated>2015-04-03T00:00:00+00:00</updated>
+   <id>https://jbales.dev/blog/2015/04/03/setting-up-apache-virtual-hosts-on-freebsd-10-1</id>
+   <summary>I’ve been messing around on DigitalOcean with a FreeBSD 10.1 droplet. First let me say that FreeBSD is awesome. The thing that I like the most about the BSDs is that they don’t beat about the bush when it comes to making an OS because the purpose of each BSD is the...</summary>
+   <content type="html">&lt;p&gt;I’ve been messing around on &lt;a title=&quot;The DigitalOcean website&quot; href=&quot;http://digitalocean.com&quot; target=&quot;_blank&quot;&gt;DigitalOcean&lt;/a&gt; with a &lt;a title=&quot;FreeBSD website&quot; href=&quot;http://freebsd.org&quot; target=&quot;_blank&quot;&gt;FreeBSD&lt;/a&gt; 10.1 droplet. First let me say that FreeBSD is awesome. The thing that I like the most about the BSDs is that they don’t beat about the bush when it comes to making an OS because the purpose of each BSD &lt;em&gt;is&lt;/em&gt; the OS. My main comparison is to Linux based OSes, which are awesome in their own way, but feel a bit splintered. With the BSDs it’s not just a kernel with a bunch of GNU apps thrown at it to make it usable, they take great pains to produce a complete OS. So when I need to know how to do something on FreeBSD, there’s probably already a darn good document out there with detailed instructions. Hell, you rarely have to go outside the FreeBSD manual unless you’re doing something really complex. It just works and that’s great!&lt;/p&gt;
+
+&lt;p&gt;Now on to why I’m writing this post. I was wanting to set up Apache on my FreeBSD 10.1 machine to serve up 3 different websites. In the Apache world this is called Virtual Hosts. So let us say that we have 3 different addresses, but only one IP, now what? Virtual Hosts, and specifically Named Virtual Hosts. Configuration is dead simple.&lt;/p&gt;
+
+&lt;p&gt;First, locate your httpd.conf file. The Apache configuration file has a lot of names on various different Linuxes, but on FreeBSD it’s just httpd.conf and it is located at /usr/local/etc/apache24/httpd.conf. Open that file and go all the way to the bottom.&lt;/p&gt;
+
+&lt;p&gt;Second you will need to add in VirtualHost entries for each of your sites. You’ll also need to include one for the default IP address of the machine, otherwise it will point to the first VirtualHost entry.&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*:80&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+ServerName 127.0.0.1
+DocumentRoot /usr/local/www/apache24/data
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*:80&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+ServerName example1.com
+DocumentRoot /usr/local/www/apache24/data/example1.com
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*:80&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+ServerName example2.com
+DocumentRoot /usr/local/www/apache24/data/example2.com
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/VirtualHost&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The first line of each listing tells Apache that this is a VirtualHost entry and that it should listen to any incoming requests (the star) on port 80. The ServerName line tells Apache the name to look for for that particular entry. If a request comes in for example1.com, then the second entry above will be used. The first entry will be used if someone just types in the IP address of the server (assuming that 127.0.0.1 is the IP). The DocumentRoot line tells Apache where the files for that site are located. I tend to create a new folder for each site in the main document root folder so that all my sites are in a common place. The last line closes the listing.&lt;/p&gt;
+
+&lt;p&gt;Once you’ve edited your file, simply write it out and restart the Apache service to pick up the new settings.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo service apache24 restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And it’s that simple! For more detailed documentation on Virtual Hosts you should read the official &lt;a title=&quot;Apache Virtual Hosts documentation link&quot; href=&quot;http://httpd.apache.org/docs/2.4/vhosts/&quot; target=&quot;_blank&quot;&gt;Apache documentation&lt;/a&gt;. Have fun with it!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The purpose of Bootstrap</title>
+   <link rel="alternate" href="https://jbales.dev/blog/2014/12/08/the-purpose-of-bootstrap.html"/>
+   <updated>2014-12-08T00:00:00+00:00</updated>
+   <id>https://jbales.dev/blog/2014/12/08/the-purpose-of-bootstrap</id>
+   <summary>Okay, so I rarely make websites or blog anymore. I’ll admit that I’ve fallen a bit out of touch with regard to the latest and greatest web technologies. But I’ve surprised even myself in the amount of time it has taken for me to understand Bootstrap. In case you didn’t...</summary>
+   <content type="html">&lt;p&gt;Okay, so I rarely make websites or blog anymore. I’ll admit that I’ve fallen a bit out of touch with regard to the latest and greatest web technologies. But I’ve surprised even myself in the amount of time it has taken for me to understand &lt;a title=&quot;Bootstrap&quot; href=&quot;http://getbootstrap.com&quot; target=&quot;_blank&quot;&gt;Bootstrap&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In case you didn’t know, Bootstrap is a web framework. No, I wouldn’t go that far. It’s more like a web layout framework. Bootstrap helps take your dowdy, old site and make it look like something a professional web designer might throw together in an afternoon (this is a compliment to web designers from someone who couldn’t design their way out of a wet paper bag).&lt;/p&gt;
+
+&lt;p&gt;So the thing that has really eluded me when it comes to Bootstrap is the power. What power is this? What power could there possibly be in a glorified style sheet?&lt;/p&gt;
+
+&lt;p&gt;The power comes not from what Bootstrap does, it comes from what I don’t have to do (and this is the part that took me so long to figure out). I don’t have to write style sheets anymore. That’s it.  But whoa, THAT’S IT! I used to spend HOURS (days even) tweaking this and nudging that, opening the &lt;a title=&quot;The Gimp!&quot; href=&quot;http://www.gimp.org/&quot; target=&quot;_blank&quot;&gt;Gimp&lt;/a&gt; and doing a little on the fly editing, reading &lt;a title=&quot;Pretentious&quot; href=&quot;http://alistapart.com/&quot; target=&quot;_blank&quot;&gt;A List Apart&lt;/a&gt; and &lt;a title=&quot;Nerd cred quantified.&quot; href=&quot;http://stackoverflow.com/&quot; target=&quot;_blank&quot;&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now when I build a site I vow to do as little of that crap as possible. Now I’m going to use Bootstrap for what it was intended: to leave the style to designers and let the blogger/developer blog and develop.&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>

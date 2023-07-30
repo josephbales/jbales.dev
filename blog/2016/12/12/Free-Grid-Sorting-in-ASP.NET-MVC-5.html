@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MVCGrid.Net</title>
+  <meta name="description" content="joseph bales, bales, joseph, developer">
+
+  <link rel="stylesheet" href="https://jbales.dev/css/bootswatch.min.css">
+  <link rel="stylesheet" href="https://jbales.dev/css/main.css">
+  <script src="https://jbales.dev/js/bootstrap.bundle.min.js"></script>
+
+  <link type="application/atom+xml" rel="alternate" href="https://jbales.dev/feed.xml" title="jbales.dev" />
+</head>
+
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container">
+        <a class="navbar-brand" href="https://jbales.dev/">jbales.dev</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a href="/blog" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <main class="container">
+        <article>
+  <header>
+    <h2 class="mt-4 mb-4">MVCGrid.Net</h2>
+  </header>
+  <div class="card border-primary mb-3 bg-dark">
+    <div class="card-body">
+      <div class="card-text"><p>I didn’t want an entire year to go by without writing a post, so I thought that I would talk a little bit about a neat little tool I found for displaying grid data in ASP.NET MVC 5 projects. It’s called <a href="http://mvcgrid.net/" title="MVCGrid.Net">MVCGrid.Net</a>. I say “neat little tool,” but it’s actually quite powerful now that I know more about how to use it.</p>
+
+<p>For styling it uses <a href="http://getbootstrap.com/" title="Bootstrap">Bootstrap</a> so that makes it easy for me since I already use Bootstrap for basic styling. It also includes a DLL where most of the magic happens and the configuration happens in a <code class="language-plaintext highlighter-rouge">MVCGridConfig.cs</code> file that you include in your <code class="language-plaintext highlighter-rouge">App_Start</code> folder.</p>
+
+<p>It allows all kinds of automagic functionality like sorting, paging, filtering, and exporting. You can also allow customized fields and page sizes. A lot of this stuff is built in, but you can also write your own rendering engine and razor templates that will allow you to do whatever it is you want.</p>
+
+<p>One page that might get overlooked in the documentation is the Custom Razor View page. It doesn’t have a direct link on the documentation table of contents. It’s actually buried in one of the other pages, but here’s the <a href="http://mvcgrid.net/demo/customrazorview" title="Link to Custom Razor Views">link</a>.</p>
+
+<p>The best thing is that it is free, open source (using the MIT license), and fairly well documented. Check it out if you are in need of something to help you get sortable grids up and running quickly in ASP.NET MVC 5.</p>
+</div>
+      <footer>
+        <p>
+          Posted on <b><time datetime="2016-12-12T00:00:00+00:00">2016-12-12</time></b><br>
+          Authored by <b>Joseph Bales</b>
+        </p>
+        <p> 
+          <a href="/blog/">Back to Blog</a>
+        </p>
+      </footer>
+    </div>
+  </div>
+</article>
+    </main>
+    <footer class="container">
+    &copy; Joseph Bales 2014 - 2023<br>
+</footer>
+
+
+  </body>
+
+</html>
